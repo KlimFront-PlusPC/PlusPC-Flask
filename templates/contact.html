@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Оставить заявку - PC Repair Service{% endblock %}
+
+{% block content %}
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Оставить заявку на ремонт</h1>
+            <p>Заполните форму и наш мастер свяжется с вами в течение 15 минут</p>
+        </div>
+    </section>
+
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>Контактная информация</h2>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Телефон</h3>
+                            <p>+7 (908) 546-83-30</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>pluspc.community@mail.ru</p>
+                        </div>
+                    </div>
+
+
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Адрес</h3>
+                            <p>г. Саратов, ул. Кутякова 138Б</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form method="POST" action="{{ url_for('contact') }}" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Ваше имя *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Телефон *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="device_type">Тип устройства *</label>
+                            <select id="device_type" name="device_type" required>
+                                <option value="">Выберите устройство</option>
+                                <option value="pc">Стационарный компьютер</option>
+                                <option value="laptop">Ноутбук</option>
+                                <option value="monitor">Монитор</option>
+                                <option value="printer">Принтер/МФУ</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="problem">Опишите проблему *</label>
+                            <textarea id="problem" name="problem" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Отправить заявку</button>
+
+                        <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

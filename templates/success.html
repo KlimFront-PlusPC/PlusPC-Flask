@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Заявка отправлена{% endblock %}
+
+{% block content %}
+<section style="padding: 150px 0 100px; text-align: center; min-height: 60vh; background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);">
+    <div class="container">
+        <div style="max-width: 600px; margin: 0 auto; background: white; padding: 50px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <div style="font-size: 80px; color: #000; margin-bottom: 30px;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+
+            <h1 style="font-size: 36px; margin-bottom: 20px; color: #000;">
+                Заявка принята!
+            </h1>
+
+            <p style="font-size: 18px; color: #666; margin-bottom: 30px; line-height: 1.6;">
+                Спасибо за обращение в PlusPC!<br>
+                Наш специалист свяжется с вами в течение 15 минут.
+            </p>
+
+            {% if application_id %}
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <p style="font-size: 16px; color: #333; margin-bottom: 5px;">
+                    Номер вашей заявки:
+                </p>
+                <p style="font-size: 24px; font-weight: bold; color: #000; letter-spacing: 2px;">
+                    {{ application_id }}
+                </p>
+                <p style="font-size: 14px; color: #999; margin-top: 10px;">
+                    Сохраните этот номер для отслеживания статуса
+                </p>
+            </div>
+            {% endif %}
+
+            <div style="display: flex; gap: 20px; justify-content: center;">
+    <a href="{{ url_for('index') }}" class="btn btn-primary">
+        На главную
+    </a>
+    <button onclick="openModal()" class="btn btn-secondary">
+        Новая заявка
+    </button>
+</div>
+            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #eee;">
+                <p style="color: #999; font-size: 14px;">
+
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

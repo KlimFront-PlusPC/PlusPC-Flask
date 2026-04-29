@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Управление отзывами - PlusPC{% endblock %}
+
+{% block content %}
+<section class="admin-reviews-section">
+    <div class="container">
+        <div class="admin-header">
+            <h1>Управление отзывами</h1>
+            <p class="admin-description">Здесь вы можете модерировать отзывы клиентов</p>
+        </div>
+
+        <div class="admin-filters">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Все отзывы</button>
+                <button class="filter-btn" data-filter="pending">На модерации</button>
+                <button class="filter-btn" data-filter="published">Опубликованные</button>
+                <button class="filter-btn" data-filter="rejected">Отклоненные</button>
+            </div>
+        </div>
+
+        <div class="reviews-table-container">
+            <table class="reviews-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Клиент</th>
+                        <th>Услуга</th>
+                        <th>Оценка</th>
+                        <th>Текст отзыва</th>
+                        <th>Статус</th>
+                        <th>Дата</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="reviewsTableBody">
+                    {% for review in reviews %}
+                    <tr data-id="{{ review.id }}" data-status="{{ review.status }}" class="review-row">
+                        <td>{{ review.id }}</td>
+                        <td>{{ review.name }}</td>
+                        <td>{{ review.service }}</td>
+                        <!-- Исправленный блок с рейтингом (с проверкой наличия поля rating) -->
+                        <td class="rating-cell">
+                            {% for i in range(5) %}
+                                {% if review.rating is defined and i < review.rating %}★{% else %}☆{% endif %}
+                            {% endfor %}
+                        </td>
+                        <td class="review-text-cell">
+                            <div class="review-text-preview">{{ review.text[:100] }}{% if review.text|length > 100 %}...{% endif %}</div>
+                            <div class="review-text-full" style="display: none;">{{ review.text }}</div>
+                            <button class="btn-text-expand" onclick="toggleText(this)">Показать полностью</button>
+                        </td>
+                        <td>
+                            <span class="status-badge status-{{ review.status }}">
+                                {% if review.status == 'pending' %}На модерации
+                                {% elif review.status == 'published' %}Опубликован
+                                {% else %}Отклонен{% endif %}
+                            </span>
+                        </td>
+                        <td>{{ review.created_at[:16] }}</td>
+                        <td class="actions-cell">
+                            <div class="action-buttons">
+                                {% if review.status == 'pending' %}
+                                    <button class="action-btn publish" onclick="publishReview({{ review.id }})">Опубликовать</button>
+                                    <button class="action-btn reject" onclick="rejectReview({{ review.id }})">Отклонить</button>
+                                {% endif %}
+                                <button class="action-btn edit" onclick="editReview({{ review.id }})">Редактировать</button>
+                                <button class="action-btn delete" onclick="deleteReview({{ review.id }})">Удалить</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if not reviews %}
+        <div class="no-reviews">
+            <p>Нет отзывов для отображения</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<div id="editModal" class="edit-modal">
+    <div class="edit-modal-content">
+        <div class="edit-modal-header">
+            <h2>Редактирование отзыва</h2>
+            <button class="edit-modal-close" onclick="closeEditModal()">&times;</button>
+        </div>
+        <div class="edit-modal-body">
+            <form id="editForm">
+                <input type="hidden" id="editId">
+                <div class="form-group">
+                    <label>Имя клиента</label>
+                    <input type="text" id="editName">
+                </div>
+                <div class="form-group">
+                    <label>Услуга</label>
+                    <input type="text" id="editService">
+                </div>
+                <div class="form-group">
+                    <label>Оценка</label>
+                    <div class="edit-rating" id="editRating">
+                        <span class="edit-star" data-rating="1">☆</span>
+                        <span class="edit-star" data-rating="2">☆</span>
+                        <span class="edit-star" data-rating="3">☆</span>
+                        <span class="edit-star" data-rating="4">☆</span>
+                        <span class="edit-star" data-rating="5">☆</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Текст отзыва</label>
+                    <textarea id="editText" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Ответ администратора (необязательно)</label>
+                    <textarea id="editAdminComment" rows="3" placeholder="Ответ администратора на отзыв..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="closeEditModal()">Отмена</button>
+                    <button type="submit" class="btn-submit">Сохранить изменения</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
