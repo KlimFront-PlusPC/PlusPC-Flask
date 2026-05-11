@@ -792,13 +792,13 @@ main {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: #000;
     color: #fff;
     border: none;
-    font-size: 10px;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 10;
@@ -833,7 +833,7 @@ main {
     .works-slide-content.reverse { flex-direction: column; }
     .works-slide-text h3 { font-size: 1.4rem; }
     .works-slide-image img { height: 250px; }
-    .carousel-nav { width: 35px; height: 35px; font-size: 16px; }
+    .carousel-nav { width: 30px; height: 30px; font-size: 14px; }
 }
 
 @media (max-width: 768px) {
@@ -906,7 +906,6 @@ main {
 
 @media (max-width: 480px) {
     .gallery-slide img { height: 250px !important; }
-    .gallery-slide div { bottom: 15px !important; left: 15px !important; padding: 8px 16px !important; font-size: 0.8rem !important; }
 }
 
 /* ===== СЕКЦИЯ УСЛУГ ===== */
@@ -1007,7 +1006,7 @@ main {
     border: 1.5px solid #efefef;
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.18s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     margin-bottom: 6px;
 }
 
@@ -1018,7 +1017,8 @@ main {
 .calc-service-item:hover {
     border-color: #aaa;
     background: #fafafa;
-    transform: translateX(2px);
+    transform: translateY(-5px) translateX(5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .calc-service-item input[type="checkbox"] {
@@ -1041,7 +1041,7 @@ main {
     font-size: 0.65rem;
     color: transparent;
     background: #fff;
-    transition: all 0.18s ease;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     flex-shrink: 0;
     font-weight: 800;
 }
@@ -1050,12 +1050,26 @@ main {
     background: #000;
     border-color: #000;
     transform: translateX(2px);
+    animation: selectPulse 0.3s ease;
+}
+
+@keyframes selectPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
 }
 
 .calc-service-item.selected .calc-service-check {
     background: #fff;
     border-color: #fff;
     color: #000;
+    animation: checkPop 0.2s ease;
+}
+
+@keyframes checkPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
 }
 
 .calc-service-item.selected .calc-service-name {
@@ -1128,6 +1142,17 @@ main {
     font-size: 3rem;
     font-weight: 800;
     color: #000;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.total-price.update {
+    animation: priceUpdate 0.3s ease;
+}
+
+@keyframes priceUpdate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); color: #4caf50; }
+    100% { transform: scale(1); }
 }
 
 .total-buttons {
@@ -1640,991 +1665,7 @@ main {
     .privacy-content p, .privacy-content ul li { font-size: 0.9rem; }
 }
 
-/* ===== СЕКЦИЯ ОТЗЫВОВ ===== */
-.reviews-page-section {
-    padding: 80px 0;
-    background: #f8f9fa;
-    min-height: 100vh;
-}
-
-.reviews-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.reviews-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    color: #000;
-}
-
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.review-card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
-    max-width: 100%;
-    overflow-x: hidden;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.review-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.reviewer-name {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #000;
-    word-break: break-word;
-    max-width: 70%;
-}
-
-.review-service {
-    font-size: 0.85rem;
-    color: #666;
-    word-break: break-word;
-}
-
-.review-rating {
-    color: #ffc107;
-    font-size: 1.1rem;
-    white-space: nowrap;
-}
-
-.review-text {
-    color: #333;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    word-wrap: break-word;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-    max-width: 100%;
-}
-
-.admin-response {
-    background: #f0f0f0;
-    padding: 15px;
-    border-radius: 12px;
-    margin-top: 15px;
-    font-size: 0.9rem;
-    word-wrap: break-word;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-}
-
-.admin-response strong {
-    color: #000;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.review-date {
-    font-size: 0.8rem;
-    color: #999;
-    margin-top: 15px;
-    text-align: right;
-}
-
-.no-reviews {
-    text-align: center;
-    padding: 60px;
-    background: #fff;
-    border-radius: 20px;
-    color: #666;
-}
-
-@media (max-width: 768px) {
-    .reviews-grid { grid-template-columns: 1fr; padding: 0 20px; }
-    .review-card { padding: 20px; }
-    .review-header { flex-direction: column; align-items: flex-start; }
-    .reviewer-name { max-width: 100%; }
-    .review-rating { white-space: nowrap; }
-}
-
-@media (max-width: 480px) {
-    .review-card { padding: 20px; }
-    .review-text { font-size: 0.9rem; }
-    .admin-response { padding: 12px; font-size: 0.85rem; }
-}
-
-/* ===== АДМИН-ПАНЕЛЬ ОТЗЫВОВ ===== */
-.admin-reviews-section {
-    padding: 80px 0;
-    background: #f8f9fa;
-    min-height: 100vh;
-}
-
-.admin-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.admin-header h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #000;
-    margin-bottom: 10px;
-}
-
-.admin-filters {
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center;
-}
-
-.filter-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.filter-btn {
-    padding: 8px 20px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.filter-btn:hover {
-    border-color: #000;
-    background: #f5f5f5;
-}
-
-.filter-btn.active {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-}
-
-.reviews-table-container {
-    background: #fff;
-    border-radius: 20px;
-    overflow-x: auto;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-}
-
-.reviews-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 900px;
-}
-
-.reviews-table th {
-    background: #f5f5f5;
-    padding: 15px;
-    text-align: left;
-    font-weight: 600;
-    color: #333;
-    border-bottom: 2px solid #e0e0e0;
-}
-
-.reviews-table td {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    vertical-align: top;
-}
-
-.review-row:hover {
-    background: #fafafa;
-}
-
-.rating-cell {
-    font-size: 1rem;
-    color: #ffc107;
-    letter-spacing: 2px;
-}
-
-.review-text-cell {
-    max-width: 300px;
-}
-
-.review-text-preview {
-    font-size: 0.85rem;
-    color: #666;
-    line-height: 1.4;
-    margin-bottom: 5px;
-}
-
-.review-text-full {
-    font-size: 0.85rem;
-    color: #333;
-    line-height: 1.5;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
-
-.btn-text-expand {
-    background: none;
-    border: none;
-    color: #000;
-    font-size: 0.7rem;
-    cursor: pointer;
-    padding: 0;
-    text-decoration: underline;
-}
-
-.btn-text-expand:hover {
-    color: #666;
-}
-
-.status-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-
-.status-pending {
-    background: #fff3e0;
-    color: #ff9800;
-}
-
-.status-published {
-    background: #e8f5e9;
-    color: #4caf50;
-}
-
-.status-rejected {
-    background: #ffebee;
-    color: #f44336;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.action-btn {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-weight: 500;
-}
-
-.action-btn.publish {
-    background: #4caf50;
-    color: #fff;
-}
-
-.action-btn.publish:hover {
-    background: #45a049;
-    transform: translateY(-1px);
-}
-
-.action-btn.reject {
-    background: #ff9800;
-    color: #fff;
-}
-
-.action-btn.reject:hover {
-    background: #e68900;
-    transform: translateY(-1px);
-}
-
-.action-btn.edit {
-    background: #2196f3;
-    color: #fff;
-}
-
-.action-btn.edit:hover {
-    background: #0b7dda;
-    transform: translateY(-1px);
-}
-
-.action-btn.delete {
-    background: #f44336;
-    color: #fff;
-}
-
-.action-btn.delete:hover {
-    background: #da190b;
-    transform: translateY(-1px);
-}
-
-.no-reviews {
-    text-align: center;
-    padding: 60px;
-    background: #fff;
-    border-radius: 20px;
-    color: #666;
-    font-size: 1.1rem;
-}
-
-@media (max-width: 992px) {
-    .reviews-table-container { overflow-x: auto; }
-    .reviews-table { min-width: 800px; }
-}
-
-@media (max-width: 768px) {
-    .admin-reviews-section { padding: 50px 0; }
-    .reviews-table-container { overflow-x: scroll; }
-    .action-buttons { flex-direction: column; }
-    .action-btn { width: 100%; text-align: center; }
-    .filter-buttons { flex-wrap: wrap; }
-    .filter-btn { padding: 6px 12px; font-size: 0.75rem; }
-}
-
-/* ===== МОДАЛЬНОЕ ОКНО РЕДАКТИРОВАНИЯ ===== */
-.edit-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(8px);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-}
-
-.edit-modal.active {
-    display: flex;
-}
-
-.edit-modal-content {
-    max-width: 550px;
-    width: 90%;
-    background: #fff;
-    border-radius: 24px;
-    animation: modalFadeIn 0.3s ease;
-    max-height: 85vh;
-    overflow-y: auto;
-}
-
-.edit-modal-header {
-    padding: 20px 25px;
-    background: #000;
-    color: #fff;
-    border-radius: 24px 24px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.edit-modal-header h2 {
-    color: #fff;
-    font-size: 1.3rem;
-    margin: 0;
-}
-
-.edit-modal-close {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.edit-modal-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(90deg);
-}
-
-.edit-modal-body {
-    padding: 25px;
-}
-
-.edit-rating {
-    display: flex;
-    gap: 8px;
-    font-size: 28px;
-    cursor: pointer;
-    margin: 10px 0;
-}
-
-.edit-star {
-    color: #ddd;
-    transition: all 0.2s;
-}
-
-.edit-star.active {
-    color: #ffc107;
-}
-
-.edit-star:hover {
-    transform: scale(1.1);
-}
-
-.edit-modal-body .form-group {
-    margin-bottom: 20px;
-}
-
-.edit-modal-body .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #333;
-}
-
-.edit-modal-body .form-group input,
-.edit-modal-body .form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #eaeaea;
-    border-radius: 12px;
-    font-size: 1rem;
-    transition: all 0.2s;
-    font-family: 'Inter', sans-serif;
-}
-
-.edit-modal-body .form-group input:focus,
-.edit-modal-body .form-group textarea:focus {
-    outline: none;
-    border-color: #000;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
-}
-
-.edit-modal-body .form-actions {
-    display: flex;
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.edit-modal-body .btn-cancel {
-    flex: 1;
-    padding: 12px;
-    background: #f0f0f0;
-    color: #333;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.2s;
-}
-
-.edit-modal-body .btn-cancel:hover {
-    background: #e0e0e0;
-}
-
-.edit-modal-body .btn-submit {
-    flex: 1;
-    padding: 12px;
-    background: #000;
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.2s;
-}
-
-.edit-modal-body .btn-submit:hover {
-    background: #333;
-    transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-    .edit-modal-content { width: 95%; max-height: 90vh; }
-    .edit-modal-header { padding: 15px 20px; }
-    .edit-modal-header h2 { font-size: 1.1rem; }
-    .edit-modal-body { padding: 20px; }
-    .edit-rating { font-size: 24px; gap: 6px; }
-    .edit-modal-body .form-actions { flex-direction: column; gap: 10px; }
-    .edit-modal-body .btn-cancel, .edit-modal-body .btn-submit { padding: 10px; font-size: 0.9rem; }
-}
-
-@media (max-width: 480px) {
-    .edit-modal-header { padding: 12px 15px; }
-    .edit-modal-body { padding: 15px; }
-    .edit-rating { font-size: 20px; }
-}
-
-/* ===== МОДАЛЬНОЕ ОКНО УСПЕХА ===== */
-.modal-success {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(12px);
-    z-index: 10001;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.modal-success.active {
-    display: flex;
-    opacity: 1;
-}
-
-.modal-success-content {
-    background: #fff;
-    max-width: 480px;
-    width: 90%;
-    border-radius: 28px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    animation: modalSuccessFadeIn 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    overflow: hidden;
-}
-
-@keyframes modalSuccessFadeIn {
-    from { opacity: 0; transform: translateY(-30px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.modal-success-header {
-    position: relative;
-    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-    padding: 30px 30px 20px;
-    text-align: center;
-}
-
-.success-icon-wrapper {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    margin-bottom: 15px;
-}
-
-.success-icon-wrapper i {
-    font-size: 48px;
-    color: #4caf50;
-}
-
-.modal-success-close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-success-close:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: rotate(90deg);
-}
-
-.modal-success-body {
-    padding: 30px;
-    text-align: center;
-}
-
-.success-title {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #000;
-    margin-bottom: 15px;
-    letter-spacing: -0.02em;
-}
-
-.success-message {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 8px;
-    line-height: 1.5;
-}
-
-.success-message span {
-    font-weight: 700;
-    color: #000;
-}
-
-.application-number-wrapper {
-    background: #f8f9fa;
-    padding: 15px 20px;
-    border-radius: 16px;
-    margin: 20px 0 10px;
-    display: inline-block;
-    width: auto;
-}
-
-.application-number-label {
-    font-size: 0.8rem;
-    color: #666;
-    margin-right: 8px;
-}
-
-.application-number {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #000;
-    letter-spacing: 0.5px;
-}
-
-.modal-success-footer {
-    padding: 0 30px 30px;
-    text-align: center;
-}
-
-.btn-success-close {
-    background: #000;
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    padding: 14px 28px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-}
-
-.btn-success-close:hover {
-    background: #1a1a1a;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 640px) {
-    .modal-success-content { width: 95%; }
-    .success-icon-wrapper { width: 65px; height: 65px; }
-    .success-icon-wrapper i { font-size: 38px; }
-    .success-title { font-size: 1.3rem; }
-    .success-message { font-size: 0.9rem; }
-    .application-number { font-size: 1rem; }
-    .modal-success-body { padding: 25px; }
-    .btn-success-close { padding: 12px 24px; font-size: 0.9rem; }
-}
-
-@media (max-width: 480px) {
-    .modal-success-header { padding: 20px 20px 15px; }
-    .success-icon-wrapper { width: 55px; height: 55px; }
-    .success-icon-wrapper i { font-size: 32px; }
-    .success-title { font-size: 1.2rem; }
-    .success-message { font-size: 0.85rem; }
-    .modal-success-body { padding: 20px; }
-    .application-number-wrapper { padding: 12px 16px; }
-    .application-number { font-size: 0.9rem; }
-    .btn-success-close { padding: 10px 20px; font-size: 0.85rem; }
-}
-
-/* ===== МОДАЛЬНОЕ ОКНО ДЛЯ ОТЗЫВОВ ===== */
-.review-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    z-index: 10002;
-    justify-content: center;
-    align-items: center;
-}
-
-.review-modal.active {
-    display: flex !important;
-}
-
-.review-modal-content {
-    max-width: 550px;
-    width: 90%;
-    background: #fff;
-    border-radius: 24px;
-    max-height: 85vh;
-    overflow-y: auto;
-    animation: modalFadeIn 0.3s ease;
-}
-
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.review-modal-header {
-    padding: 20px 25px;
-    background: #000;
-    color: #fff;
-    border-radius: 24px 24px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.review-modal-header h2 {
-    color: #fff;
-    font-size: 1.3rem;
-    margin: 0;
-}
-
-.review-modal-close {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.review-modal-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(90deg);
-}
-
-.review-modal-body {
-    padding: 25px;
-}
-
-/* Стили для полей формы */
-.review-modal-body .form-group {
-    margin-bottom: 20px;
-}
-
-.review-modal-body .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #333;
-    font-size: 14px;
-}
-
-.review-modal-body .form-group input,
-.review-modal-body .form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #eaeaea;
-    border-radius: 12px;
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.2s;
-    box-sizing: border-box;
-}
-
-.review-modal-body .form-group input:focus,
-.review-modal-body .form-group textarea:focus {
-    outline: none;
-    border-color: #000;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
-}
-
-.review-modal-body .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-/* Рейтинг звездами */
-.rating-stars {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 10px 0 10px;
-}
-
-.rating-stars .star {
-    font-size: 36px;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: #ddd;
-    user-select: none;
-}
-
-.rating-stars .star:hover {
-    transform: scale(1.1);
-}
-
-.rating-stars .star.active {
-    color: #ffc107;
-}
-
-.rating-hint {
-    text-align: center;
-    font-size: 12px;
-    color: #999;
-    margin-bottom: 15px;
-}
-
-/* Кнопки */
-.form-actions {
-    display: flex;
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.btn-cancel {
-    flex: 1;
-    padding: 12px;
-    background: #f0f0f0;
-    color: #333;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.2s;
-}
-
-.btn-cancel:hover {
-    background: #e0e0e0;
-}
-
-.btn-submit {
-    flex: 1;
-    padding: 12px;
-    background: #000;
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.2s;
-}
-
-.btn-submit:hover {
-    background: #333;
-    transform: translateY(-2px);
-}
-
-.form-note {
-    text-align: center;
-    font-size: 11px;
-    color: #999;
-    margin-top: 15px;
-}
-
-.btn-success-close {
-    padding: 10px 25px;
-    background: #000;
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.btn-success-close:hover {
-    background: #333;
-}
-
-/* Сообщение об успехе */
-#reviewSuccessMsg {
-    text-align: center;
-    padding: 40px;
-}
-
-#reviewSuccessMsg i {
-    font-size: 60px;
-    color: #4caf50;
-    margin-bottom: 20px;
-}
-
-#reviewSuccessMsg h3 {
-    margin-bottom: 10px;
-}
-
-#reviewSuccessMsg p {
-    color: #666;
-    margin-bottom: 20px;
-}
-
-/* Адаптивность */
-@media (max-width: 640px) {
-    .rating-stars .star {
-        font-size: 28px;
-        gap: 8px;
-    }
-
-    .form-actions {
-        flex-direction: column;
-    }
-
-    .review-modal-header h2 {
-        font-size: 1.1rem;
-    }
-
-    .review-modal-body {
-        padding: 20px;
-    }
-}
-
-/* Скроллбар */
-.review-modal-content::-webkit-scrollbar {
-    width: 6px;
-}
-
-.review-modal-content::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 10px;
-}
-
-.review-modal-content::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-}
-
-.review-modal-content::-webkit-scrollbar-thumb:hover {
-    background: #999;
-}
-
-
-/* Базовые классы для анимации при скролле */
+/* ===== БАЗОВЫЕ КЛАССЫ ДЛЯ АНИМАЦИИ ПРИ СКРОЛЛЕ ===== */
 .scroll-fade-up {
     opacity: 0;
     transform: translateY(50px);
@@ -2649,7 +1690,6 @@ main {
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Активный класс - анимация запускается */
 .scroll-fade-up.visible,
 .scroll-fade-left.visible,
 .scroll-fade-right.visible,
@@ -2658,40 +1698,13 @@ main {
     transform: translate(0) scale(1);
 }
 
-/* Задержки для последовательного появления */
 .delay-1 { transition-delay: 0.1s; }
 .delay-2 { transition-delay: 0.2s; }
 .delay-3 { transition-delay: 0.3s; }
 .delay-4 { transition-delay: 0.4s; }
 .delay-5 { transition-delay: 0.5s; }
-}
 
-
-/* Карточка с эффектом поднятия */
-.calc-service-item {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.calc-service-item:hover {
-    transform: translateY(-5px) translateX(5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* Карточка с эффектом свечения */
-.why-card {
-    transition: all 0.4s ease;
-}
-
-.why-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.15);
-}
-
-.why-card:hover h3 {
-    color: #000;
-    transform: scale(1.05);
-}
-/* Кнопка с эффектом пульсации */
+/* ===== КНОПКА С ЭФФЕКТОМ ПУЛЬСАЦИИ ===== */
 .btn {
     position: relative;
     overflow: hidden;
@@ -2715,7 +1728,6 @@ main {
     height: 300px;
 }
 
-/* Кнопка с эффектом смещения */
 .btn-secondary {
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
@@ -2725,142 +1737,7 @@ main {
     letter-spacing: 1px;
 }
 
-/* Прогресс-бар при загрузке страницы */
-.loading-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background: linear-gradient(90deg, #000, #666);
-    z-index: 100000;
-    animation: loading 2s ease;
-}
-
-@keyframes loading {
-    0% { width: 0%; }
-    50% { width: 70%; }
-    100% { width: 100%; display: none; }
-}
-
-/* Плавное появление изображений */
-.gallery-slide img {
-    transition: transform 0.5s ease, filter 0.3s ease;
-}
-
-.gallery-slide:hover img {
-    transform: scale(1.05);
-    filter: brightness(1.05);
-}
-
-/* Анимация для стрелок навигации */
-.gallery-arrow {
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.gallery-arrow:hover {
-    transform: translateY(-50%) scale(1.2);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-}
-
-/* Анимация появления модалки */
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px) scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.modal-content {
-    animation: modalSlideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-/* Анимация для успешной отправки */
-@keyframes successBounce {
-    0% { transform: scale(0); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-.success-checkmark {
-    animation: successBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-/* Эффект при выборе услуги */
-.calc-service-item.selected {
-    animation: selectPulse 0.3s ease;
-}
-
-@keyframes selectPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
-}
-
-/* Анимация для иконки чекбокса */
-.calc-service-check {
-    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.calc-service-item.selected .calc-service-check {
-    animation: checkPop 0.2s ease;
-}
-
-@keyframes checkPop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1); }
-}
-
-/* Анимация общей суммы */
-.total-price {
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.total-price.update {
-    animation: priceUpdate 0.3s ease;
-}
-
-@keyframes priceUpdate {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); color: #4caf50; }
-    100% { transform: scale(1); }
-}
-
-/* Слайды с плавным появлением */
-.works-slide {
-    transition: all 0.5s ease;
-}
-
-.works-slide-content {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Анимация для изображений в слайдере */
-.works-slide-image img {
-    transition: transform 0.5s ease, filter 0.3s ease;
-}
-
-.works-slide-image:hover img {
-    transform: scale(1.05);
-    filter: brightness(1.05);
-}
-
-/* Анимация для индикаторов */
-.carousel-dot {
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.carousel-dot.active {
-    transform: scale(1.2);
-}
-
 /* ===== ПРОДВИНУТЫЙ 3D ЭФФЕКТ ===== */
-/* Наклон карточек при наведении */
 .why-card {
     position: relative;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2873,32 +1750,7 @@ main {
     box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
 }
 
-/* Зеркальный эффект для карточек отзывов */
-.review-card {
-    position: relative;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
-}
-
-.review-card:hover {
-    transform: translateY(-10px) rotateX(3deg);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-/* Эффект "всплытия" для элементов калькулятора */
-.calc-service-item {
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-}
-
-.calc-service-item:hover {
-    transform: translateX(8px) translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-/* Эффект свечения при наведении */
-.why-card::after, .review-card::after {
+.why-card::after {
     content: '';
     position: absolute;
     top: 0;
@@ -2910,7 +1762,7 @@ main {
     pointer-events: none;
 }
 
-.why-card:hover::after, .review-card:hover::after {
+.why-card:hover::after {
     left: 100%;
 }
 
@@ -2923,4 +1775,14 @@ main {
 .works-slide-content:hover {
     transform: scale(1.02);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Анимация для стрелок навигации */
+.gallery-arrow {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.gallery-arrow:hover {
+    transform: translateY(-50%) scale(1.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
