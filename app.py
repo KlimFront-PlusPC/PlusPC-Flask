@@ -23,3 +23,7 @@ def privacy_policy():
 @app.route('/cookie-policy')
 def cookie_policy():
     return render_template('cookie_policy.html')
+
+@app.route('/health')
+def health_check():
+    return 'OK', 200
