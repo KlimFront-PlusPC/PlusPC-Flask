@@ -258,16 +258,7 @@
 <body>
 
 <div id="preloader">
-    <div class="preloader-content">
-        <video class="preloader-video" autoplay loop muted playsinline>
-            <source src="{{ url_for('static', filename='videos/animatelogo.mp4') }}" type="video/mp4">
-            <source src="{{ url_for('static', filename='videos/animatelogo.webm') }}" type="video/webm">
-            <div class="preloader-fallback">
-                <span class="logo-plus">Plus</span><span class="logo-pc">PC</span>
-            </div>
-        </video>
-        <div class="preloader-text">Загрузка...</div>
-    </div>
+
 </div>
 
 {% with messages = get_flashed_messages(with_categories=true) %}
