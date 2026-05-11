@@ -645,7 +645,6 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ PlusPC JavaScript загружен');
 
     applyPhoneMask(document.getElementById('phone'));
-    initPreloader();
     initGalleryCarousel();
     initProjectCarousel('repair');
     initProjectCarousel('dev');
