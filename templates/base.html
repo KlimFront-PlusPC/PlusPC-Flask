@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/pluspc.jpg') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/pluspc.jpg') }}">
 
+    <!-- ПОДКЛЮЧЕНИЕ CSS ФАЙЛА -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -258,7 +259,16 @@
 <body>
 
 <div id="preloader">
-
+    <div class="preloader-content">
+        <video class="preloader-video" autoplay loop muted playsinline>
+            <source src="{{ url_for('static', filename='videos/animatelogo.mp4') }}" type="video/mp4">
+            <source src="{{ url_for('static', filename='videos/animatelogo.webm') }}" type="video/webm">
+            <div class="preloader-fallback">
+                <span class="logo-plus">Plus</span><span class="logo-pc">PC</span>
+            </div>
+        </video>
+        <div class="preloader-text">Загрузка...</div>
+    </div>
 </div>
 
 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -293,12 +303,6 @@
                 <li><a href="{{ url_for('index') }}#services-calculator">Услуги</a></li>
                 <li><a href="{{ url_for('index') }}#why-us">Почему мы</a></li>
                 <li><a href="{{ url_for('index') }}#contact">Контакты</a></li>
-                <li><a href="/reviews-page">Отзывы</a></li>
-                {% if session.get('is_admin') %}
-                    <li><a href="{{ url_for('admin_reviews') }}" class="btn-small">Управление отзывами</a></li>
-                    <li><a href="{{ url_for('admin_logout') }}" class="btn-small btn-outline">Выйти</a></li>
-                {% else %}
-                {% endif %}
             </ul>
         </nav>
     </div>
@@ -492,7 +496,8 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="container">
         <!-- Заголовок "Спонсоры" по центру -->
         <div class="sponsors-header">
-            <h4 class="sponsors-title"></h4>
+            <h4 class="sponsors-title">Спонсоры</h4>
+            <div class="sponsors-divider">
                 <span></span>
             </div>
         </div>
@@ -500,16 +505,16 @@ document.addEventListener('DOMContentLoaded', function() {
         <!-- Фотографии спонсоров в ряд -->
         <div class="sponsors-grid">
             <a href="#" class="sponsor-item" target="_blank">
-                <img src="{{ url_for('static', filename='images/DELLL.jpg') }}" alt="WIX">
+                <img src="{{ url_for('static', filename='images/DELLL.jpg') }}" alt="DELL">
             </a>
             <a href="#" class="sponsor-item" target="_blank">
-                <img src="{{ url_for('static', filename='images/nvid.jpeg') }}" alt="STAT">
+                <img src="{{ url_for('static', filename='images/nvid.jpeg') }}" alt="NVIDIA">
             </a>
             <a href="#" class="sponsor-item" target="_blank">
                 <img src="{{ url_for('static', filename='images/ACER.png') }}" alt="ACER">
             </a>
             <a href="#" class="sponsor-item" target="_blank">
-                <img src="{{ url_for('static', filename='images/Win.png') }}" alt="WIN">
+                <img src="{{ url_for('static', filename='images/Win.png') }}" alt="Windows">
             </a>
         </div>
 
