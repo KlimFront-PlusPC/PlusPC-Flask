@@ -493,7 +493,11 @@ main {
     overflow: hidden;
 }
 
-.about-header { text-align: center; margin-bottom: 80px; }
+.about-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
 .about-badge {
     display: inline-block;
     background: #000;
@@ -506,8 +510,23 @@ main {
     margin-bottom: 25px;
     text-transform: uppercase;
 }
-.about-title { font-size: 3.2rem; font-weight: 800; color: #000; margin-bottom: 20px; letter-spacing: -0.02em; }
-.about-subtitle { font-size: 1.2rem; color: #000; max-width: 700px; margin: 0 auto; line-height: 1.6; font-weight: 500; }
+
+.about-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+}
+
+.about-subtitle {
+    font-size: 1.2rem;
+    color: #000;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 500;
+}
 
 .about-block {
     display: grid;
@@ -517,8 +536,14 @@ main {
     margin-bottom: 100px;
 }
 
-.about-block-reverse .about-image { order: 2; }
-.about-block-reverse .about-text { order: 1; padding-right: 20px; }
+.about-block-reverse .about-image {
+    order: 2;
+}
+
+.about-block-reverse .about-text {
+    order: 1;
+    padding-right: 20px;
+}
 
 .about-image {
     border-radius: 24px;
@@ -526,11 +551,27 @@ main {
     box-shadow: 0 30px 50px rgba(0,0,0,0.08);
     transition: all 0.4s ease;
 }
-.about-image img { width: 100%; height: 480px; object-fit: cover; transition: transform 0.5s ease; }
-.about-image:hover { transform: translateY(-8px); box-shadow: 0 40px 60px rgba(0,0,0,0.15); }
-.about-image:hover img { transform: scale(1.03); }
 
-.about-text { padding-left: 30px; }
+.about-image img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.about-image:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 40px 60px rgba(0,0,0,0.15);
+}
+
+.about-image:hover img {
+    transform: scale(1.03);
+}
+
+.about-text {
+    padding-left: 30px;
+}
+
 .about-tag {
     display: inline-block;
     background: #000;
@@ -543,9 +584,30 @@ main {
     margin-bottom: 30px;
     text-transform: uppercase;
 }
-.about-heading { font-size: 1.8rem; line-height: 1.4; margin-bottom: 25px; color: #000; font-weight: 700; }
-.about-description { color: #000; line-height: 1.7; margin-bottom: 20px; font-size: 1rem; font-weight: 500; }
-.about-conclusion { color: #000; line-height: 1.7; margin-bottom: 30px; font-weight: 700; font-size: 1rem; }
+
+.about-heading {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin-bottom: 25px;
+    color: #000;
+    font-weight: 700;
+}
+
+.about-description {
+    color: #000;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.about-conclusion {
+    color: #000;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+}
 
 .about-quote {
     font-size: 1rem;
@@ -556,46 +618,163 @@ main {
     border-left: 4px solid #000;
     padding-left: 25px;
     font-weight: 500;
+    transition: all 0.3s ease;
 }
-.about-quote:hover { border-left-color: #666; padding-left: 28px; }
 
-.about-buttons { display: flex; gap: 20px; margin-top: 35px; }
+.about-quote:hover {
+    border-left-color: #666;
+    padding-left: 28px;
+}
+
+.about-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 35px;
+}
+
 .about-buttons .btn-secondary {
     background: transparent;
     color: #000;
     border: 2px solid #000;
     transition: all 0.3s ease;
 }
-.about-buttons .btn-secondary:hover { background: #000; color: #fff; transform: translateY(-2px); }
 
+.about-buttons .btn-secondary:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Планшеты и средние экраны (992px и меньше) */
 @media (max-width: 992px) {
-    .about-block, .about-block-reverse { grid-template-columns: 1fr; gap: 30px; margin-bottom: 60px; }
-    .about-text { text-align: center; padding: 0 !important; }
-    .about-image img { height: 350px !important; }
-    .about-title { font-size: 2rem; }
-    .about-subtitle { font-size: 1rem; padding: 0 20px; }
-    .about-quote { text-align: left; max-width: 90%; margin: 0 auto; }
-    .about-buttons { justify-content: center; flex-wrap: wrap; }
+    .about-block,
+    .about-block-reverse {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+
+    .about-text {
+        text-align: center;
+        padding: 0 !important;
+    }
+
+    .about-image img {
+        height: 350px !important;
+    }
+
+    .about-title {
+        font-size: 2rem;
+    }
+
+    .about-subtitle {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .about-quote {
+        text-align: left;
+        max-width: 90%;
+        margin: 0 auto 25px auto;
+        padding-left: 25px;
+    }
+
+    .about-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
 
+/* Мобильные устройства (768px и меньше) */
 @media (max-width: 768px) {
-    .about-section { padding: 60px 0; }
-    .about-image img { height: 280px !important; }
-    .about-title { font-size: 1.6rem; }
-    .about-heading { font-size: 1.3rem !important; }
-    .about-description, .about-conclusion { font-size: 0.9rem !important; padding: 0 10px; }
-    .about-quote { font-size: 0.9rem !important; padding-left: 15px; }
-    .about-buttons .btn { padding: 10px 24px; font-size: 0.85rem; }
-    .about-buttons .btn-secondary { width: 80%; text-align: center; display: inline-block; }
+    .about-section {
+        padding: 60px 0;
+    }
+
+    .about-image img {
+        height: 280px !important;
+    }
+
+    .about-title {
+        font-size: 1.6rem;
+    }
+
+    .about-heading {
+        font-size: 1.3rem !important;
+    }
+
+    .about-description,
+    .about-conclusion {
+        font-size: 0.9rem !important;
+        padding: 0 10px;
+    }
+
+    .about-quote {
+        font-size: 0.9rem !important;
+        padding-left: 20px;
+        margin: 0 auto 25px auto;
+        max-width: 90%;
+        text-align: left;
+    }
+
+    .about-buttons .btn {
+        padding: 10px 24px;
+        font-size: 0.85rem;
+    }
+
+    .about-buttons .btn-secondary {
+        width: 80%;
+        text-align: center;
+        display: inline-block;
+    }
 }
 
+/* Маленькие мобильные устройства (480px и меньше) */
 @media (max-width: 480px) {
-    .about-image img { height: 220px !important; }
-    .about-title { font-size: 1.4rem; }
-    .about-badge { font-size: 0.75rem; padding: 6px 20px; }
-    .about-buttons { flex-direction: column; align-items: center; gap: 12px; }
-    .about-buttons .btn { width: 80%; }
-    .about-buttons .btn-secondary { width: 100%; padding: 10px 20px; font-size: 0.9rem; }
+    .about-section {
+        padding: 40px 0;
+    }
+
+    .about-image img {
+        height: 220px !important;
+    }
+
+    .about-title {
+        font-size: 1.4rem;
+    }
+
+    .about-badge {
+        font-size: 0.75rem;
+        padding: 6px 20px;
+    }
+
+    .about-subtitle {
+        font-size: 0.9rem;
+        padding: 0 15px;
+    }
+
+    .about-quote {
+        font-size: 0.85rem !important;
+        padding-left: 15px;
+        margin: 0 auto 20px auto;
+        max-width: 95%;
+    }
+
+    .about-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .about-buttons .btn {
+        width: 80%;
+    }
+
+    .about-buttons .btn-secondary {
+        width: 100%;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
 }
 
 /* ===== СЕКЦИЯ "ПОЧЕМУ МЫ" ===== */
@@ -1468,10 +1647,12 @@ main {
 .footer-bottom {
     text-align: center;
     padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* Убираем border-top - белую линию */
+    border-top: none;
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* Убираем линию также в мобильной версии */
 @media (max-width: 768px) {
     .footer { padding: 40px 0 20px; }
     .sponsors-grid { flex-wrap: wrap; justify-content: center; gap: 20px; }
@@ -1479,13 +1660,22 @@ main {
     .footer-links { flex-direction: column; gap: 10px; margin: 25px 0 15px; }
     .footer-link-separator { display: none; }
     .footer-link { font-size: 0.75rem; padding: 5px 0; }
+    .footer-bottom {
+        padding-top: 30px;
+        border-top: none; /* Убираем линию и на мобилках */
+    }
     .footer-bottom p { font-size: 0.75rem; }
 }
 
 @media (max-width: 480px) {
     .sponsor-item { width: 80px; }
     .sponsor-item img { max-height: 30px; }
+    .footer-bottom {
+        padding-top: 20px;
+        border-top: none;
+    }
 }
+
 
 /* ===== COOKIE БАННЕР ===== */
 .cookie-banner {
