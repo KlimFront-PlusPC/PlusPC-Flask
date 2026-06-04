@@ -412,7 +412,7 @@
 
 <!-- СЕКЦИЯ УСЛУГ -->
 <!-- СЕКЦИЯ КАЛЬКУЛЯТОРА -->
-<!-- СЕКЦИЯ УСЛУГ / КАЛЬКУЛЯТОР -->
+<!-- ===== СЕКЦИЯ УСЛУГ / КАЛЬКУЛЯТОР ===== -->
 <section id="services-calculator" class="section services-section">
     <div class="container">
         <h2 class="section-title">
@@ -420,444 +420,334 @@
         </h2>
 
         <div class="calc-wrapper">
-            <div class="calc-columns">
-                <!-- ===== ЛЕВЫЙ СТОЛБЕЦ: РЕМОНТ ТЕХНИКИ ===== -->
-                <div class="calc-column">
-                    <div class="calc-column-header">Ремонт техники</div>
-                    <div class="calc-column-body">
-                        <!-- Базовые услуги -->
-                        <div class="calc-category">
-                            <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
-                                <span>Базовые услуги</span>
-                                <span class="calc-acc-icon">▼</span>
+            <div style="display: flex; gap: 40px; align-items: stretch; flex-wrap: wrap;">
+                <!-- ===== СТОЛБЕЦ: РЕМОНТ ТЕХНИКИ ===== -->
+                <div style="flex: 1; min-width: 300px; display: flex;">
+                    <div class="calc-column" style="width: 100%; display: flex; flex-direction: column;">
+                        <div class="calc-column-header">Ремонт техники</div>
+                        <div class="calc-column-body" style="flex: 1;">
+                            <!-- Базовые услуги -->
+                            <div class="calc-category">
+                                <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
+                                    <span>Базовые услуги</span>
+                                    <span class="calc-acc-icon">▼</span>
+                                </div>
+                                <div class="calc-category-body">
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Выезд мастера</span>
+                                        <span class="calc-service-price">500 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Диагностика</span>
+                                        <span class="calc-service-price">1 500 ₽</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="calc-category-body">
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Выезд мастера</span>
-                                    <span class="calc-service-price">500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Диагностика</span>
-                                    <span class="calc-service-price">1 500 ₽</span>
-                                </label>
-                            </div>
-                        </div>
 
-                        <!-- Настройка и установка ПО -->
-                        <div class="calc-category">
-                            <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
-                                <span>Настройка и установка ПО</span>
-                                <span class="calc-acc-icon">▼</span>
+                            <!-- Настройка и установка ПО -->
+                            <div class="calc-category">
+                                <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
+                                    <span>Настройка и установка ПО</span>
+                                    <span class="calc-acc-icon">▼</span>
+                                </div>
+                                <div class="calc-category-body">
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="3600">
+                                        <span class="calc-service-check">✓</span>
+                                        <div class="calc-service-name-wrap">
+                                            <span class="calc-service-name">Установка Windows под ключ №1</span>
+                                            <span class="calc-service-desc">Без сохранения данных + драйвера + Office</span>
+                                        </div>
+                                        <span class="calc-service-price">3 600 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="3900">
+                                        <span class="calc-service-check">✓</span>
+                                        <div class="calc-service-name-wrap">
+                                            <span class="calc-service-name">Установка Windows под ключ №2</span>
+                                            <span class="calc-service-desc">С сохранением данных + драйвера + Office</span>
+                                        </div>
+                                        <span class="calc-service-price">3 900 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Установка Linux (без сохранения)</span>
+                                        <span class="calc-service-price">от 1 500 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1800">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Установка Linux (с сохранением)</span>
+                                        <span class="calc-service-price">от 1 800 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="2500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Двойная загрузка (Win + Linux)</span>
+                                        <span class="calc-service-price">от 2 500 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="800">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Установка программ</span>
+                                        <span class="calc-service-price">800 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1200">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Специфическое ПО Linux</span>
+                                        <span class="calc-service-price">от 1 200 ₽</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="calc-category-body">
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="3600">
-                                    <span class="calc-service-check">✓</span>
-                                    <div class="calc-service-name-wrap">
-                                        <span class="calc-service-name">Установка Windows под ключ №1</span>
-                                        <span class="calc-service-desc">Без сохранения данных + драйвера + Office</span>
-                                    </div>
-                                    <span class="calc-service-price">3 600 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="3900">
-                                    <span class="calc-service-check">✓</span>
-                                    <div class="calc-service-name-wrap">
-                                        <span class="calc-service-name">Установка Windows под ключ №2</span>
-                                        <span class="calc-service-desc">С сохранением данных + драйвера + Office</span>
-                                    </div>
-                                    <span class="calc-service-price">3 900 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Установка Linux (без сохранения)</span>
-                                    <span class="calc-service-price">от 1 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1800">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Установка Linux (с сохранением)</span>
-                                    <span class="calc-service-price">от 1 800 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="2500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Двойная загрузка (Win + Linux)</span>
-                                    <span class="calc-service-price">от 2 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="800">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Установка программ</span>
-                                    <span class="calc-service-price">800 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1200">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Специфическое ПО Linux</span>
-                                    <span class="calc-service-price">от 1 200 ₽</span>
-                                </label>
-                            </div>
-                        </div>
 
-                        <!-- Ремонт и замена комплектующих -->
-                        <div class="calc-category">
-                            <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
-                                <span>Ремонт и замена комплектующих</span>
-                                <span class="calc-acc-icon">▼</span>
+                            <!-- Ремонт и замена комплектующих -->
+                            <div class="calc-category">
+                                <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
+                                    <span>Ремонт и замена комплектующих</span>
+                                    <span class="calc-acc-icon">▼</span>
+                                </div>
+                                <div class="calc-category-body">
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="700">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Замена жёсткого диска</span>
+                                        <span class="calc-service-price">700 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="700">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Замена оперативной памяти</span>
+                                        <span class="calc-service-price">700 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Замена видеокарты</span>
+                                        <span class="calc-service-price">1 500 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="2000">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Замена материнской платы</span>
+                                        <span class="calc-service-price">2 000 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Замена блока питания</span>
+                                        <span class="calc-service-price">1 500 ₽</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="calc-category-body">
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="700">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Замена жёсткого диска</span>
-                                    <span class="calc-service-price">700 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="700">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Замена оперативной памяти</span>
-                                    <span class="calc-service-price">700 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Замена видеокарты</span>
-                                    <span class="calc-service-price">1 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="2000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Замена материнской платы</span>
-                                    <span class="calc-service-price">2 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Замена блока питания</span>
-                                    <span class="calc-service-price">1 500 ₽</span>
-                                </label>
-                            </div>
-                        </div>
 
-                        <!-- Профилактика -->
-                        <div class="calc-category">
-                            <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
-                                <span>Профилактика</span>
-                                <span class="calc-acc-icon">▼</span>
+                            <!-- Профилактика -->
+                            <div class="calc-category">
+                                <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
+                                    <span>Профилактика</span>
+                                    <span class="calc-acc-icon">▼</span>
+                                </div>
+                                <div class="calc-category-body">
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1000">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Чистка компьютера от пыли</span>
+                                        <span class="calc-service-price">1 000 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="800">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Замена термопасты</span>
+                                        <span class="calc-service-price">800 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1800">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Полная профилактика ПК/ноутбук</span>
+                                        <span class="calc-service-price">1 800 ₽</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="calc-category-body">
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Чистка компьютера от пыли</span>
-                                    <span class="calc-service-price">1 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="800">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Замена термопасты</span>
-                                    <span class="calc-service-price">800 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1800">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Полная профилактика ПК/ноутбук</span>
-                                    <span class="calc-service-price">1 800 ₽</span>
-                                </label>
-                            </div>
-                        </div>
 
-                        <!-- Удаление вирусов -->
-                        <div class="calc-category">
-                            <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
-                                <span>Удаление вирусов</span>
-                                <span class="calc-acc-icon">▼</span>
+                            <!-- Удаление вирусов -->
+                            <div class="calc-category">
+                                <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
+                                    <span>Удаление вирусов</span>
+                                    <span class="calc-acc-icon">▼</span>
+                                </div>
+                                <div class="calc-category-body">
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="2000">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Удаление вирусов и вредоносного ПО</span>
+                                        <span class="calc-service-price">2 000 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="2500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Удаление руткитов Linux</span>
+                                        <span class="calc-service-price">от 2 500 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="5000">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Восстановление после вирусной атаки</span>
+                                        <span class="calc-service-price">от 5 000 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="2000">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Восстановление с жёсткого диска</span>
+                                        <span class="calc-service-price">от 2 000 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1000">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Восстановление с флеш-накопителя</span>
+                                        <span class="calc-service-price">от 1 000 ₽</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="calc-category-body">
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="2000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Удаление вирусов и вредоносного ПО</span>
-                                    <span class="calc-service-price">2 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="2500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Удаление руткитов Linux</span>
-                                    <span class="calc-service-price">от 2 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="5000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Восстановление после вирусной атаки</span>
-                                    <span class="calc-service-price">от 5 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="2000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Восстановление с жёсткого диска</span>
-                                    <span class="calc-service-price">от 2 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Восстановление с флеш-накопителя</span>
-                                    <span class="calc-service-price">от 1 000 ₽</span>
-                                </label>
-                            </div>
-                        </div>
 
-                        <!-- Восстановление данных -->
-                        <div class="calc-category">
-                            <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
-                                <span>Восстановление данных</span>
-                                <span class="calc-acc-icon">▼</span>
+                            <!-- Восстановление данных -->
+                            <div class="calc-category">
+                                <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
+                                    <span>Восстановление данных</span>
+                                    <span class="calc-acc-icon">▼</span>
+                                </div>
+                                <div class="calc-category-body">
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="3000">
+                                        <span class="calc-service-check">✓</span>
+                                        <div class="calc-service-name-wrap">
+                                            <span class="calc-service-name">HDD (жёсткий диск)</span>
+                                            <span class="calc-service-desc">Удалённые файлы / форматирование</span>
+                                        </div>
+                                        <span class="calc-service-price">3 000–8 000 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="5000">
+                                        <span class="calc-service-check">✓</span>
+                                        <div class="calc-service-name-wrap">
+                                            <span class="calc-service-name">SSD (SATA)</span>
+                                            <span class="calc-service-desc">Логические ошибки / удалённые файлы</span>
+                                        </div>
+                                        <span class="calc-service-price">5 000–10 000 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="5000">
+                                        <span class="calc-service-check">✓</span>
+                                        <div class="calc-service-name-wrap">
+                                            <span class="calc-service-name">M.2 SSD / NVMe</span>
+                                            <span class="calc-service-desc">Логические ошибки</span>
+                                        </div>
+                                        <span class="calc-service-price">5 000–10 000 ₽</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="calc-category-body">
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="3000">
-                                    <span class="calc-service-check">✓</span>
-                                    <div class="calc-service-name-wrap">
-                                        <span class="calc-service-name">HDD (жёсткий диск)</span>
-                                        <span class="calc-service-desc">Удалённые файлы / форматирование</span>
-                                    </div>
-                                    <span class="calc-service-price">3 000–8 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="5000">
-                                    <span class="calc-service-check">✓</span>
-                                    <div class="calc-service-name-wrap">
-                                        <span class="calc-service-name">SSD (SATA)</span>
-                                        <span class="calc-service-desc">Логические ошибки / удалённые файлы</span>
-                                    </div>
-                                    <span class="calc-service-price">5 000–10 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="5000">
-                                    <span class="calc-service-check">✓</span>
-                                    <div class="calc-service-name-wrap">
-                                        <span class="calc-service-name">M.2 SSD / NVMe</span>
-                                        <span class="calc-service-desc">Логические ошибки</span>
-                                    </div>
-                                    <span class="calc-service-price">5 000–10 000 ₽</span>
-                                </label>
-                            </div>
-                        </div>
 
-                        <!-- Настройка сети -->
-                        <div class="calc-category">
-                            <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
-                                <span>Настройка сети и интернета</span>
-                                <span class="calc-acc-icon">▼</span>
+                            <!-- Настройка сети -->
+                            <div class="calc-category">
+                                <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
+                                    <span>Настройка сети и интернета</span>
+                                    <span class="calc-acc-icon">▼</span>
+                                </div>
+                                <div class="calc-category-body">
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Настройка Wi-Fi роутера</span>
+                                        <span class="calc-service-price">1 500 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1750">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Настройка локальной сети</span>
+                                        <span class="calc-service-price">1 500–2 000 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="2000">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Сетевые службы Linux</span>
+                                        <span class="calc-service-price">от 2 000 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Устранение проблем с интернетом</span>
+                                        <span class="calc-service-price">500 ₽</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="calc-category-body">
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Настройка Wi-Fi роутера</span>
-                                    <span class="calc-service-price">1 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1750">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Настройка локальной сети</span>
-                                    <span class="calc-service-price">1 500–2 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="2000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Сетевые службы Linux</span>
-                                    <span class="calc-service-price">от 2 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Устранение проблем с интернетом</span>
-                                    <span class="calc-service-price">500 ₽</span>
-                                </label>
-                            </div>
-                        </div>
 
-                        <!-- Прочее -->
-                        <div class="calc-category">
-                            <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
-                                <span>Прочее</span>
-                                <span class="calc-acc-icon">▼</span>
-                            </div>
-                            <div class="calc-category-body">
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="7600">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Сборка компьютера на заказ</span>
-                                    <span class="calc-service-price">от 7 600 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Модернизация компьютера</span>
-                                    <span class="calc-service-price">от 1 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="750">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Настройка периферийного оборудования</span>
-                                    <span class="calc-service-price">500–1 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Настройка удалённого доступа (SSH, VNC)</span>
-                                    <span class="calc-service-price">1 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Оптимизация производительности Linux</span>
-                                    <span class="calc-service-price">от 1 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="repair-checkbox" data-price="1500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Обновление дистрибутива Linux</span>
-                                    <span class="calc-service-price">от 1 500 ₽</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ===== ПРАВЫЙ СТОЛБЕЦ: РАЗРАБОТКА И ДИЗАЙН ===== -->
-                <div class="calc-column">
-                    <div class="calc-column-header">Разработка и дизайн</div>
-                    <div class="calc-column-body">
-                        <!-- Разработка ПО -->
-                        <div class="calc-category">
-                            <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
-                                <span>Разработка ПО</span>
-                                <span class="calc-acc-icon">▼</span>
-                            </div>
-                            <div class="calc-category-body">
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="15000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Создание сайта-визитки (от 5 дней)</span>
-                                    <span class="calc-service-price">от 15 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="8000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Одностраничный сайт (от 3 дней)</span>
-                                    <span class="calc-service-price">от 8 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="10000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Telegram бот (от 7 дней)</span>
-                                    <span class="calc-service-price">от 10 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="35000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Mini App в Telegram (от 10 дней)</span>
-                                    <span class="calc-service-price">от 35 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="20000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Интернет-магазин (от 7 дней)</span>
-                                    <span class="calc-service-price">от 20 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="5000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Сайт на Tilda (от 7 дней)</span>
-                                    <span class="calc-service-price">от 5 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="3000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Веб-приложение (Web App / SaaS)</span>
-                                    <span class="calc-service-price">от 3 000 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="2500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Квиз-сайт (от 5 дней)</span>
-                                    <span class="calc-service-price">от 2 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="1000">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Настройка OBS Studio (от 1 дня)</span>
-                                    <span class="calc-service-price">от 1 000 ₽</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Готовые модули и интеграции -->
-                        <div class="calc-category">
-                            <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
-                                <span>Готовые модули и интеграции</span>
-                                <span class="calc-acc-icon">▼</span>
-                            </div>
-                            <div class="calc-category-body">
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="2500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Интеграция карт с метками</span>
-                                    <span class="calc-service-price">от 2 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Виджеты связи</span>
-                                    <span class="calc-service-price">от 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="1500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Чат-боты</span>
-                                    <span class="calc-service-price">от 1 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="1500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Интеграция с Telegram</span>
-                                    <span class="calc-service-price">от 1 500 ₽</span>
-                                </label>
-                                <label class="calc-service-item">
-                                    <input type="checkbox" class="dev-checkbox" data-price="1500">
-                                    <span class="calc-service-check">✓</span>
-                                    <span class="calc-service-name">Онлайн-калькуляторы</span>
-                                    <span class="calc-service-price">от 1 500 ₽</span>
-                                </label>
-                            </div>
-                        </div>
-
-
+                            <!-- Прочее -->
+                            <div class="calc-category">
+                                <div class="calc-category-title" onclick="toggleCalcAccordion(this)">
+                                    <span>Прочее</span>
+                                    <span class="calc-acc-icon">▼</span>
+                                </div>
+                                <div class="calc-category-body">
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="7600">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Сборка компьютера на заказ</span>
+                                        <span class="calc-service-price">от 7 600 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1000">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Модернизация компьютера</span>
+                                        <span class="calc-service-price">от 1 000 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="750">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Настройка периферийного оборудования</span>
+                                        <span class="calc-service-price">500–1 000 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Настройка удалённого доступа (SSH, VNC)</span>
+                                        <span class="calc-service-price">1 500 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Оптимизация производительности Linux</span>
+                                        <span class="calc-service-price">от 1 500 ₽</span>
+                                    </label>
+                                    <label class="calc-service-item">
+                                        <input type="checkbox" class="repair-checkbox" data-price="1500">
+                                        <span class="calc-service-check">✓</span>
+                                        <span class="calc-service-name">Обновление дистрибутива Linux</span>
+                                        <span class="calc-service-price">от 1 500 ₽</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- ОБЩАЯ СТОИМОСТЬ - ЦЕНТР ВНИЗУ -->
-            <div class="total-container">
-                <div class="total-wrapper">
-                    <span class="total-label">Общая стоимость:</span>
-                    <span class="total-price" id="totalPrice">0 ₽</span>
+                <!-- ===== БЛОК С ОБЩЕЙ СТОИМОСТЬЮ (СПРАВА, ТЕКСТ СВЕРХУ) ===== -->
+                <div style="flex: 1; min-width: 300px; display: flex;">
+                    <div class="total-container" style="width: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%); border-radius: 24px; padding: 30px 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #f0f0f0; display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+                        <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: #333; font-weight: 600; margin-top: 0;">Ваш заказ</h3>
+                        <div class="total-wrapper" style="margin-bottom: 30px; width: 100%;">
+                            <span class="total-label" style="display: block; font-size: 0.85rem; color: #666; margin-bottom: 8px;">Общая стоимость:</span>
+                            <span class="total-price" id="totalPrice" style="font-size: 2.2rem; font-weight: 800; color: #000; display: block; line-height: 1.2;">0 ₽</span>
+                        </div>
+                        <div class="total-buttons" style="width: 100%;">
+                            <button onclick="resetAllSelections()" class="btn btn-secondary" style="width: 100%; padding: 14px; font-weight: 600;">Сбросить всё</button>
+                        </div>
+                        <p class="total-note" style="font-size: 0.7rem; color: #999; margin-top: 20px;">* Выбирайте услуги — стоимость суммируется автоматически</p>
+                    </div>
                 </div>
-                <div class="total-buttons">
-
-                    <button onclick="resetAllSelections()" class="btn btn-secondary">Сбросить всё</button>
-                </div>
-                <p class="total-note">* Выбирайте услуги из обоих столбцов — стоимость суммируется автоматически</p>
             </div>
         </div>
     </div>
