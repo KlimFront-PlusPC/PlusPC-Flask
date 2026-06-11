@@ -141,13 +141,7 @@
             </h2>
         </div>
 
-        <!-- ВКЛАДКИ ДЛЯ ПЕРЕКЛЮЧЕНИЯ (только 2 вкладки) -->
-        <div class="works-tabs">
-            <button class="works-tab active" onclick="showWorksTab('repair')">Ремонт техники</button>
-            <button class="works-tab" onclick="showWorksTab('dev')">Разработка</button>
-        </div>
-
-        <!-- ==================== ВКЛАДКА: РЕМОНТ ТЕХНИКИ ==================== -->
+        <!-- ==================== РЕМОНТ ТЕХНИКИ ==================== -->
         <div id="repairWorks" class="works-grid active">
             <div class="works-carousel-container">
                 <div class="works-carousel-wrapper">
@@ -199,59 +193,6 @@
 
                 <!-- Индикаторы слайдов -->
                 <div class="carousel-dots" id="repairDots"></div>
-            </div>
-        </div>
-
-        <!-- ==================== ВКЛАДКА: РАЗРАБОТКА ПО ==================== -->
-        <div id="devWorks" class="works-grid">
-            <div class="works-carousel-container">
-                <div class="works-carousel-wrapper">
-                    <div class="works-carousel" id="devCarousel">
-                        <!-- Слайд 1: Создание сайтов -->
-                        <div class="works-slide">
-                            <div class="works-slide-content reverse">
-                                <div class="works-slide-text">
-                                    <h3>Создание сайтов и веб-приложений</h3>
-                                    <p>Разрабатываем современные сайты любой сложности: от сайтов-визиток до полноценных интернет-магазинов и корпоративных порталов. Адаптивный дизайн, высокая скорость загрузки, SEO-оптимизация.</p>
-                                </div>
-                                <div class="works-slide-image">
-                                    <img src="{{ url_for('static', filename='images/06.png') }}" alt="Разработка сайтов">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Слайд 2: Telegram боты и Mini Apps -->
-                        <div class="works-slide">
-                            <div class="works-slide-content">
-                                <div class="works-slide-text">
-                                    <h3>Telegram боты и Mini Apps</h3>
-                                    <p>Создаем умных ботов для автоматизации бизнеса: от простых чат-ботов до сложных Mini Apps с полноценным функционалом. Интеграция с платежными системами, CRM, базами данных.</p>
-                                </div>
-                                <div class="works-slide-image">
-                                    <img src="{{ url_for('static', filename='images/robotik.jpg') }}" alt="Telegram боты">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Слайд 3: Интеграции и модули -->
-                        <div class="works-slide">
-                            <div class="works-slide-content reverse">
-                                <div class="works-slide-text">
-                                    <h3>Интеграции и готовые модули</h3>
-                                    <p>Подключаем любые внешние сервисы к вашему сайту или приложению: карты, платежные системы, CRM, мессенджеры. Разрабатываем онлайн-калькуляторы и виджеты связи.</p>
-                                </div>
-                                <div class="works-slide-image">
-                                    <img src="{{ url_for('static', filename='images/modul.jpg') }}" alt="Интеграции">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="carousel-nav prev" onclick="slideProjectCarousel('dev', 'prev')">←</button>
-                    <button class="carousel-nav next" onclick="slideProjectCarousel('dev', 'next')">→</button>
-                </div>
-
-                <div class="carousel-dots" id="devDots"></div>
             </div>
         </div>
     </div>
