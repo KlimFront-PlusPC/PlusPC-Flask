@@ -50,20 +50,13 @@
 
 <footer class="footer">
     <div class="container">
-        <div class="sponsors-grid">
-            <a href="#" class="sponsor-item" target="_blank">
-                <img src="{{ url_for('static', filename='images/DELLL.jpg') }}" alt="DELL">
-            </a>
-            <a href="#" class="sponsor-item" target="_blank">
-                <img src="{{ url_for('static', filename='images/nvid.jpeg') }}" alt="NVIDIA">
-            </a>
-            <a href="#" class="sponsor-item" target="_blank">
-                <img src="{{ url_for('static', filename='images/ACER.png') }}" alt="ACER">
-            </a>
-            <a href="#" class="sponsor-item" target="_blank">
-                <img src="{{ url_for('static', filename='images/Win.png') }}" alt="Windows">
-            </a>
-        </div>
+        <a href="#top" class="footer-brand-link">
+            <img src="{{ url_for('static', filename='images/pluspc.jpg') }}" alt="PlusPC" class="footer-logo-img">
+            <span class="footer-typing">
+                <span class="typing-text"></span><span class="typing-cursor">|</span>
+            </span>
+        </a>
+
         <div class="footer-links">
             <a href="{{ url_for('privacy_policy') }}" class="footer-link">Политика конфиденциальности</a>
             <span class="footer-link-separator">•</span>

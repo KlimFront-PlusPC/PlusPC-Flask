@@ -1,4 +1,6 @@
-// ===== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ (ТОЛЬКО ОДИН РАЗ!) =====
+// ============================================================
+// ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+// ============================================================
 let preloaderTimeout = null;
 let pageLoaded = false;
 let activeDropdown = null;
@@ -6,13 +8,17 @@ let currentSlideIndex = 0;
 let totalSlides = 0;
 let gallerySlider = null;
 
-// ===== КАРУСЕЛЬ ДЛЯ СЕКЦИИ "НАШИ ПРОЕКТЫ" (ТОЛЬКО РЕМОНТ И РАЗРАБОТКА) =====
 let projectCarousels = {
     repair: { index: 0, total: 3, initialized: false, carousel: null },
     dev: { index: 0, total: 3, initialized: false, carousel: null }
 };
 
-// ===== ФУНКЦИИ ДЛЯ КАЛЬКУЛЯТОРА =====
+let calcCarouselPhotos = [];
+let calcCarouselIndex = 0;
+
+// ============================================================
+// КАЛЬКУЛЯТОР УСЛУГ
+// ============================================================
 function formatPrice(price) {
     return Math.round(price).toLocaleString('ru-RU') + ' ₽';
 }
@@ -24,6 +30,64 @@ function updateCalcTotal() {
     });
     const totalPriceEl = document.getElementById('totalPrice');
     if (totalPriceEl) totalPriceEl.textContent = formatPrice(total);
+    updateCalcCarousel();
+}
+
+function updateCalcCarousel() {
+    const container = document.getElementById('calcPhotoCarousel');
+    const track = document.getElementById('calcCarouselTrack');
+    if (!container || !track) return;
+
+    calcCarouselPhotos = [];
+    document.querySelectorAll('.calc-service-item.selected input[type="checkbox"]').forEach(cb => {
+        const src = cb.getAttribute('data-image');
+        if (!src) return;
+        const label = cb.closest('.calc-service-item');
+        const name = label?.querySelector('.calc-service-name')?.textContent?.trim() || '';
+        calcCarouselPhotos.push({ src, name });
+    });
+
+    if (calcCarouselPhotos.length === 0) {
+        container.style.display = 'none';
+        track.innerHTML = '';
+        calcCarouselIndex = 0;
+        return;
+    }
+
+    container.style.display = 'block';
+    if (calcCarouselIndex >= calcCarouselPhotos.length) {
+        calcCarouselIndex = calcCarouselPhotos.length - 1;
+    }
+
+    track.innerHTML = calcCarouselPhotos.map(photo => `
+        <div class="calc-carousel-slide">
+            <img src="${photo.src}" alt="${photo.name}" onerror="this.closest('.calc-carousel-slide').style.display='none'">
+            <span class="calc-carousel-caption">${photo.name}</span>
+        </div>
+    `).join('');
+
+    updateCalcCarouselPosition();
+}
+
+function updateCalcCarouselPosition() {
+    const track = document.getElementById('calcCarouselTrack');
+    const counter = document.getElementById('calcCarouselCounter');
+    if (track) track.style.transform = `translateX(${-calcCarouselIndex * 100}%)`;
+    if (counter && calcCarouselPhotos.length > 0) {
+        counter.textContent = `${calcCarouselIndex + 1} / ${calcCarouselPhotos.length}`;
+    }
+}
+
+function calcCarouselPrev() {
+    if (calcCarouselPhotos.length === 0) return;
+    calcCarouselIndex = (calcCarouselIndex - 1 + calcCarouselPhotos.length) % calcCarouselPhotos.length;
+    updateCalcCarouselPosition();
+}
+
+function calcCarouselNext() {
+    if (calcCarouselPhotos.length === 0) return;
+    calcCarouselIndex = (calcCarouselIndex + 1) % calcCarouselPhotos.length;
+    updateCalcCarouselPosition();
 }
 
 function toggleCalcAccordion(titleEl) {
@@ -116,7 +180,9 @@ function initCalculator() {
     console.log('✅ Калькулятор инициализирован');
 }
 
-// ===== ФУНКЦИИ ДЛЯ ГАЛЕРЕИ =====
+// ============================================================
+// ГАЛЕРЕЯ МАСТЕРСКОЙ
+// ============================================================
 function initGalleryCarousel() {
     gallerySlider = document.getElementById('gallerySlider');
     if (!gallerySlider) {
@@ -180,7 +246,9 @@ function galleryGoToSlide(index) {
     console.log(`🎯 Переход к слайду ${index + 1}`);
 }
 
-// ===== ФУНКЦИИ ДЛЯ КАРУСЕЛИ "НАШИ ПРОЕКТЫ" =====
+// ============================================================
+// КАРУСЕЛЬ "СФЕРЫ ДЕЯТЕЛЬНОСТИ"
+// ============================================================
 function initProjectCarousel(type) {
     const carousel = document.getElementById(`${type}Carousel`);
     if (!carousel) {
@@ -261,7 +329,9 @@ function goToProjectSlide(type, index) {
     }
 }
 
-// ===== ФУНКЦИЯ ДЛЯ ПЕРЕКЛЮЧЕНИЯ ВКЛАДОК =====
+// ============================================================
+// ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК "НАШИ ПРОЕКТЫ"
+// ============================================================
 function showWorksTab(tabName) {
     console.log('showWorksTab вызван с параметром:', tabName);
 
@@ -303,7 +373,9 @@ function showWorksTab(tabName) {
     }
 }
 
-// ===== УПРАВЛЕНИЕ ВЫПАДАЮЩИМИ МЕНЮ КАЛЬКУЛЯТОРА =====
+// ============================================================
+// ВЫПАДАЮЩИЕ МЕНЮ КАЛЬКУЛЯТОРА
+// ============================================================
 function toggleServiceCategory(category) {
     console.log('toggleServiceCategory вызван для категории:', category);
 
@@ -363,7 +435,9 @@ function closeDropdown(category) {
     document.body.style.overflow = 'auto';
 }
 
-// ===== ПРЕЛОАДЕР =====
+// ============================================================
+// ПРЕЛОАДЕР (если есть)
+// ============================================================
 function hidePreloader() {
     const preloader = document.getElementById('preloader');
     const content = document.querySelector('main');
@@ -459,7 +533,9 @@ function initPreloader() {
     }
 }
 
-// ===== МАСКА ДЛЯ ТЕЛЕФОНА =====
+// ============================================================
+// МАСКА ДЛЯ ПОЛЯ ТЕЛЕФОНА
+// ============================================================
 function applyPhoneMask(input) {
     if (!input) return;
     input.addEventListener('input', function(e) {
@@ -468,7 +544,9 @@ function applyPhoneMask(input) {
     });
 }
 
-// ===== АНИМАЦИИ =====
+// ============================================================
+// АНИМАЦИИ ПРИ СКРОЛЛЕ
+// ============================================================
 function initScrollAnimations() {
     const animatedElements = document.querySelectorAll('.scroll-fade-up, .scroll-fade-left, .scroll-fade-right, .scroll-zoom');
 
@@ -504,7 +582,62 @@ function animateCardsStaggered() {
     });
 }
 
-// ===== 3D ЭФФЕКТЫ =====
+function initAboutDecorationAnimation() {
+    const decoration = document.getElementById('aboutDecoration');
+    if (!decoration) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                decoration.classList.add('visible');
+                observer.unobserve(decoration);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(decoration);
+}
+
+function initWhyDecorationAnimation() {
+    const whyDecoration = document.getElementById('whyDecoration');
+    if (!whyDecoration) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    whyDecoration.classList.add('visible');
+                }, 300);
+                observer.unobserve(whyDecoration);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(whyDecoration);
+}
+
+function initTimelineAnimation() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    if (!timelineItems.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const index = Array.from(timelineItems).indexOf(entry.target);
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 250);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    timelineItems.forEach(item => observer.observe(item));
+}
+
+// ============================================================
+// 3D-ЭФФЕКТЫ ПРИ НАВЕДЕНИИ
+// ============================================================
 function init3DCards() {
     const cards = document.querySelectorAll('.why-card');
 
@@ -553,7 +686,9 @@ function init3DServiceItems() {
     });
 }
 
-// ===== TOUCH-СВАЙП =====
+// ============================================================
+// TOUCH-СВАЙП ДЛЯ КАРУСЕЛЕЙ
+// ============================================================
 function initSimpleCarouselSwipe() {
     const carouselWrappers = document.querySelectorAll('#repairWorks .works-carousel-wrapper, #devWorks .works-carousel-wrapper');
 
@@ -595,7 +730,9 @@ function initSimpleCarouselSwipe() {
     console.log('✅ Touch-свайп активирован для каруселей (ремонт и разработка)');
 }
 
-// ===== СЛАЙДЕР ГЕРОЙ-СЕКЦИИ =====
+// ============================================================
+// СЛАЙДШОУ В ГЕРОЙ-СЕКЦИИ
+// ============================================================
 function initHeroSlider() {
     const slides = document.querySelectorAll('.slideshow-container .slide');
     if (!slides.length) return;
@@ -640,42 +777,65 @@ function initHeroSlider() {
     });
 }
 
-// ===== ОСНОВНАЯ ИНИЦИАЛИЗАЦИЯ =====
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ PlusPC JavaScript загружен');
+// ============================================================
+// ШАПКА: ПРОЗРАЧНАЯ → БЕЛАЯ
+// ============================================================
+function initHeaderScrollState() {
+    const hero = document.querySelector('.hero');
+    const header = document.querySelector('.header');
+    if (!header) return;
 
-    applyPhoneMask(document.getElementById('phone'));
-    initGalleryCarousel();
-    initProjectCarousel('repair');
-    initProjectCarousel('dev');
-    initCalculator();
-    initScrollAnimations();
-    animateCardsStaggered();
-    initSimpleCarouselSwipe();
-    initHeroSlider();
-    init3DCards();
-    init3DServiceItems();
-
-    // Галерея - свайп на телефонах
-    const galleryContainer = document.getElementById('galleryContainer');
-    if (galleryContainer) {
-        let touchStartX = 0, touchEndX = 0;
-        galleryContainer.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-        galleryContainer.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            const swipeThreshold = 50;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                galleryNextSlide();
-            }
-            if (touchEndX > touchStartX + swipeThreshold) {
-                galleryPrevSlide();
-            }
-        }, { passive: true });
+    if (hero) {
+        const heroObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                hero.classList.toggle('hero-visible', entry.isIntersecting);
+                header.classList.toggle('scrolled', !entry.isIntersecting);
+            });
+        }, { threshold: 0.15 });
+        heroObserver.observe(hero);
+    } else {
+        header.classList.add('scrolled');
     }
+}
 
-    // Вкладки "Наши проекты"
+function initHeaderHoursIndicator() {
+    const dot = document.querySelector('.header-hours-dot');
+    const label = document.querySelector('.header-hours-label');
+    if (!dot || !label) return;
+
+    const currentHour = new Date().getHours();
+    const isOpen = currentHour >= 9 && currentHour < 21;
+    dot.classList.add(isOpen ? 'open' : 'closed');
+    label.textContent = isOpen ? 'Сейчас открыто' : 'Сейчас закрыто';
+}
+
+// ============================================================
+// ГАЛЕРЕЯ: СВАЙП НА ТЕЛЕФОНАХ
+// ============================================================
+function initGallerySwipe() {
+    const galleryContainer = document.getElementById('galleryContainer');
+    if (!galleryContainer) return;
+
+    let touchStartX = 0, touchEndX = 0;
+    galleryContainer.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    galleryContainer.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            galleryNextSlide();
+        }
+        if (touchEndX > touchStartX + swipeThreshold) {
+            galleryPrevSlide();
+        }
+    }, { passive: true });
+}
+
+// ============================================================
+// ВКЛАДКИ "НАШИ ПРОЕКТЫ"
+// ============================================================
+function initWorksTabs() {
     const repairWorks = document.getElementById('repairWorks');
     const devWorks = document.getElementById('devWorks');
 
@@ -698,8 +858,9 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.warn('⚠️ Блоки "Наши проекты" не найдены на этой странице');
     }
+}
 
-    // Закрытие выпадающих меню по клику вне
+function initDropdownGlobalClose() {
     document.addEventListener('click', function(event) {
         if (!activeDropdown) return;
 
@@ -719,14 +880,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Закрытие по Escape
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape' && activeDropdown) {
             closeDropdown(activeDropdown);
         }
     });
+}
 
-    // Авто-скрытие flash сообщений
+function initFlashMessagesAutoHide() {
     setTimeout(function() {
         const flashes = document.querySelectorAll('.flash-message');
         flashes.forEach(flash => {
@@ -735,16 +896,228 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => flash.remove(), 300);
         });
     }, 5000);
-});
+}
 
-// ===== ОЧИСТКА ТАЙМЕРА ПРИ ВЫХОДЕ =====
-window.addEventListener('beforeunload', function() {
-    if (preloaderTimeout) {
-        clearTimeout(preloaderTimeout);
+// ============================================================
+// ПЕЧАТНАЯ МАШИНКА В ФУТЕРЕ
+// ============================================================
+function initFooterTyping() {
+    const phrases = [
+        'PlusPC',
+        'Ремонт компьютеров с душой',
+        'Ваш ПК — наша забота',
+        'Сделаем ваш компьютер лучше',
+        'Профессионалы своего дела',
+        'Цена = качество',
+        'Подарим вашему пк вторую жизнь',
+        'PlusPC'
+    ];
+
+    let phraseIndex = 0, charIndex = 0, isDeleting = false;
+    const typingEl = document.querySelector('.typing-text');
+    const cursorEl = document.querySelector('.typing-cursor');
+
+    if (!typingEl || !cursorEl) return;
+
+    function type() {
+        const phrase = phrases[phraseIndex];
+        typingEl.textContent = isDeleting
+            ? phrase.substring(0, charIndex - 1)
+            : phrase.substring(0, charIndex + 1);
+        charIndex += isDeleting ? -1 : 1;
+
+        let delay = isDeleting ? 30 : 80;
+
+        if (!isDeleting && charIndex === phrase.length) {
+            delay = 2500;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            delay = 500;
+        }
+        setTimeout(type, delay);
+    }
+
+    setTimeout(type, 1000);
+}
+
+// ============================================================
+// 3D-КОМПОЗИЦИЯ (Ч/Б МИНИМАЛИЗМ)
+// ============================================================
+function initHeroThree() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas || typeof THREE === 'undefined') return;
+
+    const container = canvas.closest('.hero-right') || canvas.parentElement;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+
+    function setSize() {
+        const w = container.clientWidth || 400;
+        const h = container.clientHeight || 400;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        const minSide = Math.min(w, h);
+        camera.position.z = minSide < 260 ? 10.5 : (minSide < 380 ? 9 : 7.2);
+        camera.updateProjectionMatrix();
+    }
+    setSize();
+
+    const group = new THREE.Group();
+    scene.add(group);
+
+    const coreGeo = new THREE.IcosahedronGeometry(1.7, 1);
+    const coreEdges = new THREE.EdgesGeometry(coreGeo);
+    const coreMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.85 });
+    const core = new THREE.LineSegments(coreEdges, coreMat);
+    group.add(core);
+
+    const coreFillMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.035 });
+    const coreFill = new THREE.Mesh(coreGeo, coreFillMat);
+    group.add(coreFill);
+
+    const shellGeo = new THREE.DodecahedronGeometry(2.6, 0);
+    const shellEdges = new THREE.EdgesGeometry(shellGeo);
+    const shellMat = new THREE.LineBasicMaterial({ color: 0xaaaaaa, transparent: true, opacity: 0.32 });
+    const shell = new THREE.LineSegments(shellEdges, shellMat);
+    group.add(shell);
+
+    const ringGeo = new THREE.TorusGeometry(3.05, 0.006, 8, 100);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.35 });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = Math.PI / 2.5;
+    ring.rotation.y = 0.3;
+    group.add(ring);
+
+    const isMobile = window.innerWidth < 769;
+    const pointsCount = isMobile ? 22 : 46;
+    const pointsGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(pointsCount * 3);
+    for (let i = 0; i < pointsCount; i++) {
+        const r = 3.5 + Math.random() * 1.1;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos((Math.random() * 2) - 1);
+        positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+        positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+        positions[i * 3 + 2] = r * Math.cos(phi);
+    }
+    pointsGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const pointsMat = new THREE.PointsMaterial({ color: 0xe6e6e6, size: 0.035, transparent: true, opacity: 0.55 });
+    const points = new THREE.Points(pointsGeo, pointsMat);
+    group.add(points);
+
+    group.rotation.x = 0.35;
+    group.rotation.y = -0.2;
+
+    let targetX = 0, targetY = 0;
+    let currentX = group.rotation.y, currentY = group.rotation.x;
+
+    window.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        const nx = ((e.clientX - rect.left) / rect.width) - 0.5;
+        const ny = ((e.clientY - rect.top) / rect.height) - 0.5;
+        targetX = nx * 0.7;
+        targetY = ny * 0.5;
+    });
+
+    let frameId;
+    function animate() {
+        frameId = requestAnimationFrame(animate);
+
+        core.rotation.y += 0.0018;
+        core.rotation.x += 0.0007;
+        coreFill.rotation.copy(core.rotation);
+        shell.rotation.y -= 0.0009;
+        shell.rotation.x += 0.0005;
+        ring.rotation.z += 0.0012;
+        points.rotation.y += 0.0006;
+
+        currentX += (targetX - currentX) * 0.03;
+        currentY += (0.35 + targetY - currentY) * 0.03;
+        group.rotation.y = currentX - 0.2;
+        group.rotation.x = currentY;
+
+        renderer.render(scene, camera);
+    }
+
+    if (prefersReducedMotion) {
+        renderer.render(scene, camera);
+    } else {
+        animate();
+    }
+
+    window.addEventListener('resize', setSize);
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden && frameId) {
+            cancelAnimationFrame(frameId);
+        } else if (!document.hidden && !prefersReducedMotion) {
+            animate();
+        }
+    });
+}
+
+// ============================================================
+// ОСНОВНАЯ ИНИЦИАЛИЗАЦИЯ
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('✅ PlusPC JavaScript загружен');
+
+    // --- Базовая инициализация ---
+    applyPhoneMask(document.getElementById('phone'));
+    initGalleryCarousel();
+    initProjectCarousel('repair');
+    initProjectCarousel('dev');
+    initCalculator();
+    initHeroSlider();
+
+    // --- Анимации при скролле ---
+    initScrollAnimations();
+    animateCardsStaggered();
+    initAboutDecorationAnimation();
+    initWhyDecorationAnimation();
+    initTimelineAnimation();
+
+    // --- 3D-эффекты и свайпы ---
+    init3DCards();
+    init3DServiceItems();
+    initSimpleCarouselSwipe();
+    initGallerySwipe();
+
+    // --- Шапка сайта ---
+    initHeaderScrollState();
+    initHeaderHoursIndicator();
+
+    // --- Вкладки и выпадающие меню ---
+    initWorksTabs();
+    initDropdownGlobalClose();
+
+    // --- Прочее ---
+    initFlashMessagesAutoHide();
+    initFooterTyping(); // <-- ВАЖНО: запуск печатной машинки
+
+    // --- Запуск 3D-композиции, если Three.js загружен ---
+    if (typeof THREE !== 'undefined') {
+        initHeroThree();
+    } else {
+        window.addEventListener('load', initHeroThree);
+    }
+
+    // Прелоадер (если есть)
+    if (document.getElementById('preloader')) {
+        initPreloader();
     }
 });
 
-// ===== ЕДИНЫЙ ЭКСПОРТ В ГЛОБАЛЬНУЮ ОБЛАСТЬ =====
+// ============================================================
+// ЭКСПОРТ В ГЛОБАЛЬНУЮ ОБЛАСТЬ (для onclick)
+// ============================================================
 window.showWorksTab = showWorksTab;
 window.toggleServiceCategory = toggleServiceCategory;
 window.closeDropdown = closeDropdown;
@@ -761,3 +1134,6 @@ window.goToProjectSlide = goToProjectSlide;
 window.prevCarouselSlide = function(type) { slideProjectCarousel(type, 'prev'); };
 window.nextCarouselSlide = function(type) { slideProjectCarousel(type, 'next'); };
 window.goToCarouselSlide = function(type, index) { goToProjectSlide(type, index); };
+window.calcCarouselPrev = calcCarouselPrev;
+window.calcCarouselNext = calcCarouselNext;
+window.initHeroThree = initHeroThree;

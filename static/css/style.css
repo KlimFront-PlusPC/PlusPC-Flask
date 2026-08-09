@@ -1976,3 +1976,70 @@ main {
     transform: translateY(-50%) scale(1.2);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
+
+/* ===== ПЕЧАТНАЯ МАШИНКА В ФУТЕРЕ ===== */
+/* ===== ФУТЕР: ЛОГО + ТЕКСТ В ОДНУ СТРОКУ ===== */
+.footer-brand-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.footer-brand-link:hover {
+    transform: scale(1.02);
+}
+
+.footer-logo-img {
+    height: 56px;
+    width: auto;
+    border-radius: 10px;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.footer-typing {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.typing-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.typing-cursor {
+    color: #fff;
+    font-size: 48px;
+    font-weight: 300;
+    animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
+@media (max-width: 768px) {
+    .footer-brand-link {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .footer-logo-img {
+        height: 40px;
+    }
+    .typing-text {
+        font-size: 32px;
+    }
+    .typing-cursor {
+        font-size: 32px;
+    }
+}
